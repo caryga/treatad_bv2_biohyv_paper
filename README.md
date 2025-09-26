@@ -1,35 +1,13 @@
-# TReATAD + BV2 + BioHyV – Reproducibility Repository
+# TREAT-AD -- Bioinformatics Hypothesis Validation in BV2 cells
 
 This repository contains code for the analyses and figures in:
 
-> **[Paper Title]**  
-> Authors: [List of Authors]  
-> Journal / Preprint / Year: [Journal name, Year or bioRxiv link]  
-> DOI: [Insert DOI once minted]
+> Integrated Phenotypic and Proteomic Screening Identifies Top-Tier Alzheimer's Disease Therapeutic Targets
+> Authors: Cary GA, Li Q, Wiley JC, Paisie CA, Du Y, Zoeller EL, Duong D, Fu H, Seyfried NT, Levey AI, Betarbet R, Carter GW for The Emory-Sage-SGC-JAX TREAT-AD Center
+> Journal: _in progress_  
+> DOI: _in progress_ 
 
-This is the minimal, paper-focused version of the project, containing only the scripts and data pointers necessary to reproduce the main results.
-
----
-
-## 📄 Structure of this repository
-
-treatad_bv2_biohyv_paper/
-├── data/ # (Optional) small example or subset data
-├── scripts/ # Main analysis scripts in execution order
-│ ├── 01_download.R
-│ ├── 02_preprocess.R
-│ ├── 03_analysis.R
-│ └── 04_figures.R
-├── outputs/ # Generated outputs: figures, tables, etc.
-│ ├── figures/
-│ ├── tables/
-│ └── session_info.txt
-├── renv.lock # lockfile capturing the R package environment
-├── LICENSE
-├── CITATION.cff
-├── README.md
-└── DATA_AVAILABILITY.md
-
+This is the minimal, paper-focused version of the project, containing the scripts and data pointers necessary to reproduce the main results.
 
 ---
 
@@ -44,17 +22,6 @@ You may need the following non-R system libraries (platform names examples):
 - `libxml2`
 - Compression: `zlib`, `xz`, `bzip2`
 - Graphics / rendering: `libpng`, `libjpeg`, `freetype`, `harfbuzz`, `fribidi`
-- (Optional, for full runs) SLURM client tools if running on HPC cluster
-
-Example install (Ubuntu / Debian):
-```bash
-sudo apt-get update
-sudo apt-get install -y build-essential gfortran git \
-  libcurl4-openssl-dev libssl-dev libxml2-dev \
-  zlib1g-dev libbz2-dev liblzma-dev \
-  libpng-dev libjpeg-dev \
-  freetype-dev libharfbuzz-dev libfribidi-dev
-```
 
 ### R environment
 
@@ -71,44 +38,24 @@ This ensures that you are running with the same package versions used for the an
 
 Detailed data access instructions and dataset identifiers are in DATA_AVAILABILITY.md. In summary:
 
-Some input data are available via Synapse (or another controlled repository).
+Most input data are available via Synapse.
 
-Use the commands shown there (e.g. synapser::synGet(...)) to download required data.
-
-For users without full data access, a small example dataset is included under data/ so that scripts can be run in demonstration mode.
+Use the commands shown there (e.g. `get` from the `synapseclient` python package) to download required data.
 
 ---
 
 ## ▶️ How to reproduce the analyses
 
-The scripts should be run in a specific order. Each script contains descriptive comments about its inputs and outputs.
-
-A suggested workflow:
-
-```bash
-Rscript scripts/01_download.R
-Rscript scripts/02_preprocess.R
-Rscript scripts/03_analysis.R
-Rscript scripts/04_figures.R
-```
-
-After these run, you can inspect outputs in:
-
-outputs/figures/ — figures for the manuscript
-
-outputs/tables/ — intermediate tables / results
-
-outputs/session_info.txt — package and system session details
+1) To analyze the cell phenotype data, run `bv2_cell_assays_lmm.R`
+2) To analyze the proteomics data, run `bv2_proteomics.R`
+3) To collect microglial datasets, run `microglial_cell_sets.R`
+4) To generate the figures, using the output from the scripts in steps #1-3, follow the `bv2_biohyv_manuscript_updated.Rmd` notebook
 
 ---
 
 ## 🪪 Citation & release
 
 Please cite the manuscript associated with this repository.
-
-A CITATION.cff file is included for machine-readable citations.
-
-After publication, a release (e.g. v1.0-paper) will be created, and a DOI minted via Zenodo. The DOI badge will appear above here.
 
 --- 
 
